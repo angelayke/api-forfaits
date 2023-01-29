@@ -8,10 +8,10 @@ class ControleurForfait {
         require './vue/forfaits/liste.php';
     }
 
-function afficherUnForfait() {
-    $forfait = modele_forfait::ObtenirUn($_GET['id']);
-    require './vue/forfaits/forfait.php';
-}
+    function afficherUnForfait() {
+        $forfait = modele_forfait::ObtenirUn($_GET['id']);
+        require './vue/forfaits/forfait.php';
+    }
 
    /////// JSON //////
     /* GET */
@@ -30,8 +30,9 @@ function afficherUnForfait() {
     }
 
     /* POST */
-    /* Fonction permettant d'ajouter un produit reçu au format JSON */
-   /*     $resultat = new stdClass();
+    /* Fonction permettant d'ajouter un forfait reçu au format JSON */
+    function ajouterJSON($data) {   
+        $resultat = new stdClass();
         if(isset($data['nom']) && isset($data['description']) && isset($data['code']) && isset($data['categories']) && isset($data['etablissement']) && isset($data['date_debut']) && isset($data['date_fin']) && isset($data['prix']) && isset($data['nouveau_prix']) && isset($data['premium']) && isset($data['avis']) ) {
         $resultat->message = modele_forfait::ajouter($data['nom'], $data['description'], $data['code'], $data['categorie'],$data['etablissement'], $data['date_debut'], $data['date_fin'], $data['prix'], $data['nouveau_prix'], $data['premium'], $data['avis']);
         } else {
@@ -39,10 +40,10 @@ function afficherUnForfait() {
         }
         echo json_encode($resultat);
         }
-    */
+    
     /* PUT */
     /* Fonction permettant de modifier un produit reçu au format JSON */
-  /*  function modifierJSON($data) {
+    function modifierJSON($data) {
         $resultat = new stdClass();
         if(isset($_GET['id']) && isset($data['nom']) && isset($data['description']) && isset($data['code']) && isset($data['categories']) && isset($data['etablissement']) && isset($data['date_debut']) && isset($data['date_fin']) && isset($data['prix']) && isset($data['nouveau_prix']) && isset($data['premium']) && isset($data['avis'])) {
         $resultat->message = modele_forfait::modifier($_GET['id'], $data['nom'], $data['description'], $data['code'], $data['categorie'],$data['etablissement'], $data['date_debut'], $data['date_fin'], $data['prix'], $data['nouveau_prix'], $data['premium'], $data['avis']);
@@ -52,14 +53,14 @@ function afficherUnForfait() {
         }
         echo json_encode($resultat);
         }
-    */
+    
     /* DELETE */
     function supprimerJSON($id) {
         $resultat = new stdClass();
         $resultat->message = modele_forfait::supprimer($_GET['id']);
         echo json_encode($resultat);
         }
-        
+      
 }
 
 ?>
