@@ -1,3 +1,8 @@
+<?php
+require_once 'controleurs/forfaits.php';
+?>
+<?php include_once('controleurs/forfaits.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

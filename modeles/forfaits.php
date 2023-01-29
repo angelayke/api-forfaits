@@ -105,7 +105,7 @@ class modele_forfait {
         // Création d'une requête préparée
         if ($requete = $mysqli->prepare("INSERT INTO forfaits(nom, description, code, categories, etablissement, date_debut, date_fin, prix, nouveau_prix, premium, avis) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) {      
 
-        $requete->bind_param("sssssbbddbs", $nom, $description, $code, $categories, $etablissement, $date_debut, $date_fin, $prix, $nouveau_prix, $premium, $avis);
+        $requete->bind_param("sssssssddis", $nom, $description, $code, $categories, $etablissement, $date_debut, $date_fin, $prix, $nouveau_prix, $premium, $avis);
 
         if($requete->execute()) { // Exécution de la requête
             $message = "Forfait ajouté";  // Message ajouté dans la page en cas d'ajout réussi
