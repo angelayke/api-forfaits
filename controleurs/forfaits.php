@@ -17,7 +17,7 @@ function afficherUnForfait() {
     /* GET */
     /* Fonction permettant de récupérer l'ensemble des produits et de les afficher au format JSON */
     function afficherJSON() {
-        $forfaits = modele_forfait::ObtenirTous();
+        $forfaits = forfait::ObtenirTous();
         echo json_encode($forfaits);
     }
 
@@ -25,7 +25,7 @@ function afficherUnForfait() {
     /* GET */
     /* Fonction permettant de récupérer un des produits et de l'afficher au format JSON */
     function afficherFicheJSON() {
-        $produit = modele_forfait::ObtenirUn($_GET['id']);
+        $forfait = modele_forfait::ObtenirUn($_GET['id']);
         echo json_encode($forfait);
     }
 
@@ -54,12 +54,12 @@ function afficherUnForfait() {
         }
     */
     /* DELETE */
- /*   function supprimerJSON($id) {
+    function supprimerJSON($id) {
         $resultat = new stdClass();
         $resultat->message = modele_forfait::supprimer($_GET['id']);
         echo json_encode($resultat);
         }
-      */  
+        
 }
 
 ?>
