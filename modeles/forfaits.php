@@ -134,7 +134,7 @@ class modele_forfait {
         // Création d'une requête préparée
         if ($requete = $mysqli->prepare("UPDATE forfaits SET nom=?, description=?, code=?, categories=?, etablissement=?, date_debut=?, date_fin=?, prix=?, nouveau_prix=?, premium=?, avis=? WHERE id=?")) {      
 
-        $requete->bind_param("sssssbbddbsi", $nom, $description, $code, $categories, $etablissement, $date_debut, $date_fin, $prix, $nouveau_prix, $premium, $avis, $id);
+        $requete->bind_param("sssssssddisi", $nom, $description, $code, $categories, $etablissement, $date_debut, $date_fin, $prix, $nouveau_prix, $premium, $avis, $id);
 
         if($requete->execute()) { // Exécution de la requête
             $message = "Forfait modifié";  // Message ajouté dans la page en cas d'ajout réussi
