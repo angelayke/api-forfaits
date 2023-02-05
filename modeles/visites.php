@@ -2,7 +2,7 @@
 
 require_once "./include/config.php";
 
-class modele_forfait {
+class modele_visite {
     public $id; 
     public $nom_visite;
     public $duree_visite;

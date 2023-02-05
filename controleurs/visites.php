@@ -2,6 +2,17 @@
 require_once './modeles/visites.php';
 
 class ControleurVisite {
+
+    function afficherListe () {
+        $visites = modele_visite::ObtenirTous();
+        require './vue/visites/liste.php';
+    }
+
+    function afficherUneVisite() {
+        $visite = modele_visite::ObtenirUn($_GET['id']);
+        require './vue/visites/visite.php';
+    }
+
     
   /////// JSON //////
     /* GET */
