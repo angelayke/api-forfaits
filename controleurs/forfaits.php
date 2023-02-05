@@ -15,7 +15,7 @@ class ControleurForfait {
 
    /////// JSON //////
     /* GET */
-    /* Fonction permettant de récupérer l'ensemble des produits et de les afficher au format JSON */
+    /* Fonction permettant de récupérer l'ensemble des forfaits et de les afficher au format JSON */
     function afficherJSON() {
         $forfaits = modele_forfait::ObtenirTous();
         echo json_encode($forfaits);
@@ -23,7 +23,7 @@ class ControleurForfait {
 
 
     /* GET */
-    /* Fonction permettant de récupérer un des produits et de l'afficher au format JSON */
+    /* Fonction permettant de récupérer un des forfait et de l'afficher au format JSON */
     function afficherFicheJSON() {
         $forfait = modele_forfait::ObtenirUn($_GET['id']);
         echo json_encode($forfait);
