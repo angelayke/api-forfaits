@@ -32,6 +32,49 @@ class modele_forfait {
 
         return $mysqli;
     }
+
+    /* Fonction permettant de récupérer l'ensemble des visites */
+     public static function ObtenirTous() {
+        $liste = [];
+         $mysqli = self::connecter();
+    
+        $resultatRequete = $mysqli->query("SELECT id, nom_visite, duree_visite, prix_visite FROM visites_touristiques ORDER BY nom_visite");
+    
+        foreach ($resultatRequete as $enregistrement) {
+                $liste[] = new modele_visite($enregistrement['id'], $enregistrement['nom_visite'], $enregistrement['duree_visite'], $enregistrement['prix_visite']);
+        }
+    
+        return $liste;
+    }
+
+    /* Fonction permettant de récupérer un forfait en fonction de son identifiant */
+    public static function ObtenirUn($id)
+    {
+        $mysqli = self::connecter();
+
+        if ($requete = $mysqli->prepare("SELECT * FROM visites_touristiques WHERE id=?")) {  // Création d'une requête préparée 
+            $requete->bind_param("i", $id); // Envoi des paramètres à la requête
+
+            $requete->execute(); // Exécution de la requête
+
+            $result = $requete->get_result(); // Récupération de résultats de la requête¸
+
+            if ($enregistrement = $result->fetch_assoc()) { // Récupération de l'enregistrement
+                $visite = new modele_visite($enregistrement['id'], $enregistrement['nom_visite'], $enregistrement['duree_visite'], $enregistrement['prix_visite']);
+            } else {
+                echo "Erreur: Aucun enregistrement trouvé";
+                exit();
+            }
+
+            $requete->close(); // Fermeture du traitement 
+        } else {
+            echo "Une erreur a été détectée dans la requête utilisée : ";
+            echo $mysqli->error;
+            echo "<br>";
+            exit();
+        }
+        return $visite;
+    }
 }
 
 ?>
