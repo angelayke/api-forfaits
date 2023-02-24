@@ -33,8 +33,24 @@ class ControleurForfait {
     /* Fonction permettant d'ajouter un forfait reçu au format JSON */
     function ajouterJSON($data) {   
         $resultat = new stdClass();
-        if(isset($data['nom']) && isset($data['description']) && isset($data['code']) && isset($data['categories']) && isset($data['etablissement']) && isset($data['date_debut']) && isset($data['date_fin']) && isset($data['prix']) && isset($data['nouveau_prix']) && isset($data['premium']) && isset($data['avis']) ) {
-        $resultat->message = modele_forfait::ajouter($data['nom'], $data['description'], $data['code'], $data['categories'], $data['etablissement'], $data['date_debut'], $data['date_fin'], $data['prix'], $data['nouveau_prix'], $data['premium'], $data['avis']);
+        if(isset($data['nom']) 
+            && isset($data['description']) 
+            && isset($data['code'])  
+            && isset($data['etablissement']['nomEtablissement']) 
+            && isset($data['dateDebut']) 
+            && isset($data['dateFin']) 
+            && isset($data['prix'])   ) {
+        $resultat->message = modele_forfait::ajouter($data['nom'],
+            $data['description'], 
+            $data['code'], 
+            '', 
+            $data['etablissement']['nomEtablissement'], 
+            $data['dateDebut'], 
+            $data['dateFin'], 
+            $data['prix'], 
+            0, 
+            false, 
+           '');
         } else {
         $resultat->message = "Impossible d'ajouter un forfait. Des informations sont manquantes";
         }
@@ -45,8 +61,29 @@ class ControleurForfait {
     /* Fonction permettant de modifier un produit reçu au format JSON */
     function modifierJSON($data) {
         $resultat = new stdClass();
-        if(isset($_GET['id']) && isset($data['nom']) && isset($data['description']) && isset($data['code']) && isset($data['categories']) && isset($data['etablissement']) && isset($data['date_debut']) && isset($data['date_fin']) && isset($data['prix']) && isset($data['nouveau_prix']) && isset($data['premium']) && isset($data['avis'])) {
-        $resultat->message = modele_forfait::modifier($_GET['id'], $data['nom'], $data['description'], $data['code'], $data['categories'],$data['etablissement'], $data['date_debut'], $data['date_fin'], $data['prix'], $data['nouveau_prix'], $data['premium'], $data['avis']);
+        if(isset($_GET['id']) 
+            && isset($data['nom']) 
+            && isset($data['description']) 
+            && isset($data['code']) 
+            && isset($data['categories']) 
+            && isset($data['etablissement']['nomEtablissement']) 
+            && isset($data['dateDebut']) 
+            && isset($data['dateFin']) 
+            && isset($data['prix']) 
+            && isset($data['nouveauprix']) 
+            && isset($data['premium'])  ) {
+        $resultat->message = modele_forfait::modifier($_GET['id'], 
+            $data['nom'],
+            $data['description'], 
+            $data['code'], 
+            $data['categories'], 
+            $data['etablissement']['nomEtablissement'], 
+            $data['dateDebut'], 
+            $data['dateFin'], 
+            $data['prix'], 
+            $data['nouveauprix'], 
+            $data['premium'], 
+            '');
         } else {
         $resultat->message = "Impossible de modifier le forfait. Des informations sont manquantes";
         require './vue/erreur.php';

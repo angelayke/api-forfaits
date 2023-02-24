@@ -2,6 +2,16 @@
 
 require_once "./include/config.php";
 
+class modele_etablissement {
+    public $nomEtablissement; 
+
+    public function __construct($nomEtablissement) {
+        $this->nomEtablissement = $nomEtablissement;
+
+    }
+
+}
+
 class modele_forfait {
     public $id; 
     public $nom;
@@ -9,28 +19,28 @@ class modele_forfait {
     public $code;
     public $categories;
     public $etablissement;
-    public $date_debut;
-    public $date_fin;
+    public $dateDebut;
+    public $dateFin;
     public $prix;
     public $nouveau_prix;
     public $premium;
-    public $avis;
+
 
     /* Fonction permettant de construire un objet de type modele_forfait */
-    public function __construct($id, $nom, $description, $code, $categories, $etablissement, 
+    public function __construct($id, $nom, $description, $code, $categories, $nom_etablissement, 
                                 $date_debut, $date_fin, $prix, $nouveau_prix, $premium, $avis) {
         $this->id = $id;
         $this->nom = $nom;
         $this->description = $description;
         $this->code = $code;
         $this->categories = $categories;
-        $this->etablissement = $etablissement;
-        $this->date_debut = $date_debut;
-        $this->date_fin = $date_fin;
+        $this->etablissement = new modele_etablissement($nom_etablissement);
+        $this->dateDebut = $date_debut;
+        $this->dateFin = $date_fin;
         $this->prix = $prix;
-        $this->nouveau_prix = $nouveau_prix;
+        $this->nouveauprix = $nouveau_prix;
         $this->premium = $premium;
-        $this->avis = $avis;
+
     }
 
      /* Fonction permettant de se connecter à la base de données */
